@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GiftCard Mining Pro | Access</title>
+    <style>
+        :root {
+            --primary: #4a6bff;
+            --secondary: #714aff;
+            --dark: #0f1721;
+            --darker: #0a1017;
+            --light: #ffffff;
+            --gray: #2a3a4f;
+            --warning: #ffaa00;
+            --danger: #ff5555;
+            --success: #00c853;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--dark);
+            color: var(--light);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(74, 107, 255, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 40% 30%, rgba(113, 74, 255, 0.05) 0%, transparent 20%);
+        }
+        
+        .access-code-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: var(--darker);
+            border-radius: 12px;
+            box-shadow: 0 0 30px rgba(74, 107, 255, 0.1);
+            border: 1px solid rgba(74, 107, 255, 0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .access-code-container::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                linear-gradient(45deg, transparent 65%, rgba(74, 107, 255, 0.03) 65%),
+                linear-gradient(-45deg, transparent 65%, rgba(113, 74, 255, 0.03) 65%);
+            background-size: 30px 30px;
+            animation: gridAnimation 60s linear infinite;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes gridAnimation {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(30px, 30px); }
+        }
+        
+        .access-code-title {
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            position: relative;
+            animation: textGlow 2s infinite alternate;
+        }
+        
+        @keyframes textGlow {
+            0% { text-shadow: 0 0 5px rgba(74, 107, 255, 0.3); }
+            100% { text-shadow: 0 0 15px rgba(74, 107, 255, 0.7); }
+        }
+        
+        .access-code-form {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .access-code-input {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            border: 1px solid rgba(74, 107, 255, 0.2);
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            font-size: 0.95rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .access-code-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(74, 107, 255, 0.2);
+        }
+        
+        .access-code-btn {
+            width: 100%;
+            padding: 14px;
+            margin-top: 10px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .access-code-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(74, 107, 255, 0.4);
+        }
+        
+        .access-code-btn:active {
+            transform: translateY(1px);
+        }
+        
+        .access-code-btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .access-code-btn:hover::before {
+            left: 100%;
+        }
+        
+        .access-code-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .access-code-logo-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            box-shadow: 0 0 20px rgba(74, 107, 255, 0.3);
+            animation: pulse 2s infinite, rotate 15s linear infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 20px rgba(74, 107, 255, 0.3); }
+            50% { transform: scale(1.05); box-shadow: 0 0 30px rgba(74, 107, 255, 0.5); }
+            100% { transform: scale(1); box-shadow: 0 0 20px rgba(74, 107, 255, 0.3); }
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .access-code-logo-text {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            animation: textGlow 2s infinite alternate;
+        }
+        
+        .access-code-logo-text::after {
+            content: "PRO";
+            position: absolute;
+            top: -10px;
+            right: -30px;
+            font-size: 0.8rem;
+            background: var(--success);
+            color: var(--darker);
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-weight: 700;
+            animation: proPulse 1.5s infinite;
+        }
+        
+        @keyframes proPulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--danger);
+            color: white;
+            padding: 12px 16px;
+            border-radius: 6px;
+            z-index: 1000;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(255, 85, 85, 0.3);
+            animation: slideIn 0.5s, fadeOut 0.5s 2.5s forwards;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+        
+        @media (max-width: 600px) {
+            .access-code-container {
+                margin: 20px auto;
+                padding: 20px;
+            }
+            
+            .access-code-title {
+                font-size: 1.5rem;
+            }
+            
+            .access-code-logo-text {
+                font-size: 1.8rem;
+            }
+            
+            .access-code-logo-icon {
+                width: 50px;
+                height: 50px;
+                margin-right: 10px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="access-code-container">
+        <div class="access-code-logo">
+            <div class="access-code-logo-icon">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L3 7L12 12L21 7L12 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M3 12L12 17L21 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M3 17L12 22L21 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div class="access-code-logo-text">GiftCard Mining</div>
+        </div>
+        
+        <h2 class="access-code-title">Enter Access Code</h2>
+        <div class="access-code-form">
+            <input type="password" id="accessCodeInput" class="access-code-input" placeholder="Enter your access code" autocomplete="off">
+            <button class="access-code-btn" id="accessCodeButton">
+                <i class="fas fa-lock-open" style="margin-right: 8px;"></i> UNLOCK
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const ACCESS_CODE = "Q2004777";
+        const accessCodeButton = document.getElementById('accessCodeButton');
+        
+        accessCodeButton.addEventListener('click', function() {
+            const code = document.getElementById('accessCodeInput').value;
+            
+            if (code === ACCESS_CODE) {
+                // Save to localStorage that access was granted
+                localStorage.setItem('giftCardGenProAccess', 'granted');
+                // Redirect to dashboard
+                window.location.href = 'done.html';
+            } else {
+                showNotification("Invalid access code");
+                // Shake animation for incorrect code
+                const container = document.querySelector('.access-code-container');
+                container.style.animation = 'shake 0.5s';
+                setTimeout(() => {
+                    container.style.animation = '';
+                }, 500);
+            }
+        });
+        
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+        
+        // Add shake animation for incorrect codes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+                20%, 40%, 60%, 80% { transform: translateX(5px); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
